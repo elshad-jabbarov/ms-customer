@@ -1,0 +1,26 @@
+server:
+  port: 9004
+  shutdown: graceful
+  tomcat:
+    connection-timeout: 2s
+    keep-alive-timeout: 15s
+    threads:
+      max: 50
+      min-spare: 5
+
+spring:
+  application:
+    name: ms-customer
+  lifecycle:
+    timeout-per-shutdown-phase: 15s
+  datasource:
+    username: user
+    password: password
+    url: jdbc:postgresql://customer-db:5432/customer
+    hikari:
+      connection-timeout: 2000 #ms
+      maximum-pool-size: 5
+  flyway:
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    url: jdbc:postgresql://customer-db:5432/customer
